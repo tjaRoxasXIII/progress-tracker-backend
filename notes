@@ -11,3 +11,4 @@ belongs_to :user
     :is_complete - boolean, :startdate - date, :end_date - date
 
 
+-- If you decide to add in namespacing, check out the end of the first Expense tracker tutorial --
