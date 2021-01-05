@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
     def index
         @users = User.all
-        render json: @users
+        render json: @users, except: [:password_digest]
     end
 
     def create
@@ -11,13 +11,14 @@ class UsersController < ApplicationController
             render json: @user
         else
             render json: {error: 'Error creating user account'}
+        end
     end
 
     def show
-        @user = User.find(params[:id])
-        render json: @user
+        @user = User.find_by_id(params[:id])
+        render json: @user, except: [:password_digest]
     end
-
+    
     def edit
     end
 
@@ -31,9 +32,8 @@ class UsersController < ApplicationController
 
     private
 
-        def user_params
-            params.require(:user).permit(:name, :email, :password_digest)
-        end
-
+    def user_params
+        params.require(:user).permit(:name, :email, :password_digest)
     end
+
 end

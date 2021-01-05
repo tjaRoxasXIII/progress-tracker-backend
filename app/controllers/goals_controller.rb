@@ -9,10 +9,12 @@ class GoalsController < ApplicationController
 
     def create
         @goal = Account.new(goal_params)
+        @goal.is_complete = false
         if @goal.save
             render json: @goal
         else
             render json: {error: 'Error creating goal'}
+        end
     end
 
     def show
@@ -33,13 +35,12 @@ class GoalsController < ApplicationController
 
     private
 
-        def set_user
-            @user = User.find(params[:user_id])
-        end
-
-        def goal_params
-            params.require(:goal).permit(:title, :description, :frequency, :start_date, :end_date)
-        end
-
+    def set_user
+        @user = User.find(params[:user_id])
     end
+
+    def goal_params
+        params.require(:goal).permit(:title, :description, :frequency, :start_date, :end_date)
+    end
+
 end
