@@ -1,7 +1,7 @@
 class Goal < ApplicationRecord
     belongs_to :user
     validates :title, :frequency, :start_date, :end_date, presence: true
-    validates_inclusion_of :frequency, in => ['daily', 'weekly', 'bi-weekly', 'monthly', 'semi-annually', 'annually']
+    # validates_inclusion_of :frequency, in => ['daily', 'weekly', 'bi-weekly', 'monthly', 'semi-annually', 'annually']
 
     #This will eventually be re-worked to calculate self.percent_completion  
     def calculate_percent_completion
