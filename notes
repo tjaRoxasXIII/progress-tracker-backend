@@ -1,0 +1,13 @@
+User
+has_many :goals
+    :name, :email, :password_digest
+
+
+
+Goal
+belongs_to :user
+    :user_id - integer, :title - string, :description - string, 
+    :frequency - string, :percent_complete - integer, 
+    :is_complete - boolean, :startdate - date, :end_date - date
+
+
