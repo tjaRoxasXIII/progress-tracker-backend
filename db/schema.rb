@@ -18,8 +18,7 @@ ActiveRecord::Schema.define(version: 2021_01_11_175047) do
     t.string "description"
     t.string "frequency"
     t.boolean "is_complete"
-    t.string "start_date"
-    t.string "date"
+    t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
