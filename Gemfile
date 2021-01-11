@@ -20,6 +20,8 @@ gem 'jwt'
 
 gem 'dotenv-rails'
 
+gem 'pry'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
