@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :goals
   resources :users, only: [:show, :create] do
-    resources :goals, only: [:index]
+    resources :goals, only: [:index, :create]
   end
 
   post '/login', to: 'auth#login'
