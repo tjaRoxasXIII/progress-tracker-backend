@@ -6,6 +6,8 @@ class CreateGoals < ActiveRecord::Migration[6.0]
       t.string :description
       t.string :frequency
       t.boolean :is_complete
+      t.integer :num_of_completed
+      t.integer :num_to_complete
       t.date :start_date
       t.date :end_date
 
