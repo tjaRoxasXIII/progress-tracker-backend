@@ -2,7 +2,8 @@ class GoalsController < ApplicationController
     skip_before_action :require_login
     def index
         @goals = User.find_by(id: params[:user_id]).goals
-        render json: @goals
+        sorted_goals = @goals.sort_by {|a| a.is_complete ? 1 : 0 }
+        render json: sorted_goals
     end
 
     def create
@@ -10,9 +11,13 @@ class GoalsController < ApplicationController
         @goal = @user.goals.build(goal_params)
         @goal.is_complete = false
         @goal.num_to_complete = @goal.calculate_num_to_complete
-        @goal.num_of_completed = 0
-        if @goal.save
-            render json: @goal
+        if @goal.num_to_complete > 0
+            @goal.num_of_completed = 0
+            if @goal.save
+                render json: @goal
+            end
+        else
+            render json: @goal.errors
         end
     end
 
@@ -27,6 +32,11 @@ class GoalsController < ApplicationController
             end
             @goal.save
         end
+    end
+
+    def destroy
+        @goal = Goal.find_by(id: params[:id])
+        @goal.destroy
     end
 
     private 

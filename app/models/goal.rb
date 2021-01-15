@@ -1,5 +1,6 @@
 class Goal < ApplicationRecord
     belongs_to :user
+    validates :title, :start_date, :end_date, presence: true
 
     def calculate_num_to_complete
         case self.frequency
